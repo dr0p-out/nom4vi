@@ -5,6 +5,7 @@ import sys
 try:
   from PySide6.QtCore import (
     QCommandLineParser,
+    QLocale,
     QTranslator,
     Slot,
   )
@@ -49,6 +50,9 @@ def main():
   app = QApplication(sys.argv)
 
   tl = QTranslator()
+  if not tl.load(QLocale.system(), 'nom4vi', '-'):
+    print('Can\'t load translation file for your current UI language, '
+          'English will be displayed as fallback.', file=sys.stderr)
   app.installTranslator(tl)
 
   app.setApplicationName(app.translate('main', 'Nôm4VI'))
