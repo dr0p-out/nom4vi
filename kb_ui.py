@@ -14,10 +14,12 @@ from PySide6.QtGui import (
   QKeyEvent,
   QKeySequence,
   QShortcut,
+  QTextCursor,
   QWheelEvent,
 )
 from PySide6.QtWidgets import (
   QHBoxLayout,
+  QInputDialog,
   QLabel,
   QMessageBox,
   QPlainTextEdit,
@@ -146,7 +148,6 @@ class EditorWindow(QWidget):
     gotoBtn = QPushButton()
     barLayout.addWidget(gotoBtn)
     gotoBtn.setText(self.tr('Go-To…'))
-    gotoBtn.setEnabled(False)
     gotoBtn.clicked.connect(self.__handleGoto)
     self.__gotoBtn = gotoBtn
     gotoIcon = self.style().standardIcon(QStyle.StandardPixmap.SP_ArrowForward)
@@ -311,7 +312,18 @@ class EditorWindow(QWidget):
 
   @Slot()
   def __handleGoto(self):
-    pass
+    doc = self.__area.document()
+    ln, ok = QInputDialog.getInt(self, None,
+                                 self.tr(
+                                   'Specify the destination line number to switch to:'
+                                 ),
+                                 value=self.__area.textCursor().blockNumber() + 1,
+                                 minValue=1,
+                                 maxValue=doc.lineCount())
+    if ok:
+      blk = doc.findBlockByLineNumber(ln - 1)
+      self.__area.setFocus()
+      self.__area.setTextCursor(QTextCursor(blk))
 
   @Slot()
   def __handleGotoKey(self):
