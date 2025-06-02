@@ -48,6 +48,7 @@ def main():
   app = QApplication(sys.argv)
 
   tl = QTranslator()
+  print('No locale was selected', file=sys.stderr)
   app.installTranslator(tl)
 
   app.setApplicationName(app.tr('Nôm4VI'))
