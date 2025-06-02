@@ -14,6 +14,7 @@ from PySide6.QtGui import (
   QKeyEvent,
   QKeySequence,
   QShortcut,
+  QWheelEvent,
 )
 from PySide6.QtWidgets import (
   QHBoxLayout,
@@ -82,6 +83,21 @@ class InputArea(QPlainTextEdit):
 
     # use the default handling of arrow keys, backspace, etc.
     QPlainTextEdit.keyPressEvent(self, ev)
+
+  def wheelEvent(self, ev: QWheelEvent):
+    if ev.modifiers() == Qt.KeyboardModifier.ControlModifier:
+      delta = ev.angleDelta()
+      if delta.x() == 0:
+        dy = delta.y()
+        if dy > 0:
+          self.zoomIn()
+          ev.accept()
+          return
+        if dy < 0:
+          self.zoomOut()
+          ev.accept()
+          return
+    QPlainTextEdit.wheelEvent(self, ev)
 
 class EditorWindow(QWidget):
   """
