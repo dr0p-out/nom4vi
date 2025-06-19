@@ -219,6 +219,9 @@ class EditorWindow(QWidget):
       # and informed us to clear our dirty UI states
     self.__engine = engine
 
+  def setFd(self, fd: typing.Optional[typing.TextIO]):
+    pass
+
   @Slot(str)
   def __handleDoLetter(self, c: str):
     if not self.__keyboardEnabled or self.__engine is None:

@@ -48,12 +48,12 @@ Contents will not be saved.
 </translation>
     </message>
     <message>
-        <location filename="kb_ui.py" line="256"/>
+        <location filename="kb_ui.py" line="259"/>
         <source>&lt;font color=&quot;red&quot;&gt;• Keyboard Disabled&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;red&quot;&gt;•鍵盤禁用中&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="kb_ui.py" line="289"/>
+        <location filename="kb_ui.py" line="292"/>
         <source>&lt;Tab&gt;		Toggle keyboard ON/OFF
 &lt;Space&gt;		Transform words
 &lt;Enter&gt;		Commit word
@@ -80,7 +80,7 @@ Contents will not be saved.
 </translation>
     </message>
     <message>
-        <location filename="kb_ui.py" line="319"/>
+        <location filename="kb_ui.py" line="322"/>
         <source>Specify the destination line number to switch to:</source>
         <translation>輸入要跳轉至的行号：</translation>
     </message>
@@ -88,7 +88,7 @@ Contents will not be saved.
 <context>
     <name>ctx_end_program_key_bind</name>
     <message>
-        <location filename="app.py" line="44"/>
+        <location filename="app.py" line="46"/>
         <source>Exit application?
 
 Unsaved changes will be lost!
@@ -102,19 +102,39 @@ Unsaved changes will be lost!
 <context>
     <name>ctx_main</name>
     <message>
-        <location filename="app.py" line="56"/>
+        <location filename="app.py" line="58"/>
         <source>Nôm4VI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="app.py" line="60"/>
+        <location filename="app.py" line="62"/>
         <source>Chữ Nôm workstation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="app.py" line="69"/>
+        <location filename="app.py" line="65"/>
+        <source>FILE</source>
+        <translation>文件</translation>
+    </message>
+    <message>
+        <location filename="app.py" line="67"/>
+        <source>If specified, operate on the text file</source>
+        <translation>要編輯的文件的位置</translation>
+    </message>
+    <message>
+        <location filename="app.py" line="76"/>
         <source>%s: Too many positional arguments</source>
         <translation>%s: 参数過多</translation>
+    </message>
+    <message>
+        <location filename="app.py" line="93"/>
+        <source>Cannot open the specified file at &quot;{path}&quot;: {reason}</source>
+        <translation>無法打開文件“{path}”（原因：{reason}）</translation>
+    </message>
+    <message>
+        <location filename="app.py" line="109"/>
+        <source>The specified path &quot;{path}&quot; is not a regular text file, skipping.</source>
+        <translation>指定的路徑“{path}”不是有效的文件。</translation>
     </message>
 </context>
 </TS>

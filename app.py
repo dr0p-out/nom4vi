@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import os
+import stat
 import sys
 
 try:
@@ -59,10 +61,15 @@ def main():
   parser.setApplicationDescription(app.translate('ctx_main',
                                                  'Chữ Nôm workstation'))
   parser.addHelpOption()
+  parser.addPositionalArgument(
+    app.translate('ctx_main', 'FILE'),
+    app.translate('ctx_main', 'If specified, operate on the text file')
+  )
   parser.process(app)
 
   args = parser.positionalArguments()
-  if len(args) > 0:
+  argc = len(args)
+  if argc > 1:
     print(app.translate(
             'ctx_main',
             '%s: Too many positional arguments'
@@ -71,6 +78,37 @@ def main():
     sys.exit(1)
 
   ed = EditorWindow()
+
+  if argc > 0:
+    path = args[0]
+    try:
+      fd = open(path, 'r+', encoding='utf-8')
+    except OSError as exc:
+      QMessageBox.warning(
+        None, None,
+        app.translate(
+          'ctx_main',
+          'Cannot open the specified '
+          'file at "{path}": {reason}'
+        ).format(
+          path=path,
+          reason=exc.strerror
+        )
+      )
+    else:
+      if stat.S_ISREG(os.fstat(fd.fileno()).st_mode):
+        ed.setFd(fd)
+      else:
+        fd.close()
+        QMessageBox.warning(
+          None, None,
+          app.translate(
+            'ctx_main',
+            'The specified path "{path}" is '
+            'not a regular text file, skipping.'
+          ).format(path=path)
+        )
+
   ed.setEngine(QuocEngine())
   ed.show()
 
