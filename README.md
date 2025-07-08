@@ -27,6 +27,10 @@ To be done
 
 3. Launch `app.py`
 
+### Dictionary
+
+Please manually download and maintain the dictionary file (`dict.csv`) you want to use in the same directory with this application.
+
 ### Native language support
 
 Translations needs to be compiled first, this is by design of Qt and to keep the project repository clean. Make sure you have Qt development tools installed and available in your `PATH` environment variable and run:
